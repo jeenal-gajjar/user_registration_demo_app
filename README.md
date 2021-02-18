@@ -1,4 +1,4 @@
-# CRM
+# Demo
 
 ### Getting Started
 
@@ -23,7 +23,7 @@ $ virtualenv venv
 $ source venv/bin/activate
 
 # Clone Repository
-$ 
+$ git clone https://github.com/jeenal-gajjar/user_registration_demo_app.git
 
 # Change dir to sperotel_backend
 $ cd demo
