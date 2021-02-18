@@ -1,0 +1,18 @@
+main:
+    debug: True
+
+database:
+    name: demo
+    username: root
+    password: root
+    host: localhost
+    port: 3306
+    engine: mysql
+
+
+media:
+    path: /home/jeenal/jeenal/demo/media/
+
+page:
+    size: 10
+
