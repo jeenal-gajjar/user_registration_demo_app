@@ -11,13 +11,13 @@ from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from app.custom_user.models import User
 from app.custom_user.serializers import LoginSerializer, UserSerializer
 from demo.utils import constants
-from demo.utils.response import success_response
+from demo.utils.response import success_response, error_response
 
 
 class LoginViewSet(viewsets.ModelViewSet):
@@ -67,8 +67,11 @@ class SignupViewSet(viewsets.ModelViewSet):
     http_method_names = ['post']
 
     def create(self, request, *args, **kwargs):
-        super().create(request, *args, **kwargs)
-        return success_response(constants.USER_SIGNUP_SUCCESS)
+        try:
+            super().create(request, *args, **kwargs)
+            return success_response(constants.USER_SIGNUP_SUCCESS)
+        except Exception as exc:
+            return error_response(constants.USER_SIGNUP_FAIL, status_code=status.HTTP_400_BAD_REQUEST)
 
 
 class UserViewSet(viewsets.ModelViewSet):
